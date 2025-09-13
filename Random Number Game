@@ -1,0 +1,77 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    Random r = new Random();
+	    List<Integer> nums = new ArrayList<>();
+	    while(nums.size() != 5){
+	        int d = r.nextInt(10);
+	        if(!nums.contains(d)){
+	            nums.add(d);
+	        }
+	    }
+	    System.out.println("Enter Player1 Name: ");
+	    String name1 = sc.nextLine();
+	    System.out.println("Enter Player2 Name: ");
+	    String name2 = sc.nextLine();
+	    
+	    System.out.println("Hello! "+name1+" "+name2);
+	    List<Integer> pl1 = new ArrayList<>();
+	    List<Integer> pl2 = new ArrayList<>();
+	    int s1=0,s2=0;
+	    for(int i=0;i<3;i++){
+	        System.out.println();
+	        System.out.println("*********** Turn "+(i+1)+" *********");
+	        System.out.println(name1+" Enter your Choice: ");
+	        int ch1 = sc.nextInt();
+	        while(pl2.contains(ch1) || pl1.contains(ch1)){
+	            System.out.println("Number is already Entered! Enter another: ");
+	            ch1 = sc.nextInt();
+	        }
+	        
+	        pl1.add(ch1);
+	        
+	        if(nums.contains(ch1)){
+	            System.out.println("CORRECT!");
+	            s1++;
+	        }
+	        else{
+	            System.out.println("WRONG!");
+	        }
+	       
+	        
+	        System.out.println(name2+" Enter your Choice: ");
+	        int ch2 = sc.nextInt();
+	        while(pl1.contains(ch2) || pl2.contains(ch2)){
+	            System.out.println("Number already added.Enter Another: ");
+	            ch2 = sc.nextInt();
+	        }
+	        pl2.add(ch2);
+	        if(nums.contains(ch2)){
+                System.out.println("CORRECT!");
+	            s2++;
+	        }
+	        else{
+	            System.out.println("WRONG!");
+	        }
+	       
+	        
+	    }
+	    System.out.println("----------------------RESULT----------------------------");
+	    System.out.println("Numbers in Computer Mind: "+nums);
+	    System.out.println("Numbers Choosen by "+name1+": "+pl1);
+	    System.out.println("Score: "+s1);
+	    System.out.println("Numbers Choosen by "+name2+": "+pl2);
+	    System.out.println("Score: "+s2);
+	    if(s1 > s2){
+	        System.out.println(name1+" is a Winner!");
+	    }
+	    else if(s1 < s2){
+	        System.out.println(name2+" is a Winner!");
+	    }
+	    else{
+	        System.out.println("Drawn");
+	    }
+	}
+}
