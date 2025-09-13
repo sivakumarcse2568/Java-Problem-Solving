@@ -1,0 +1,100 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+class Node{
+    int data;
+    Node left;
+    Node right;
+    
+    Node(int val){
+        data = val;
+        left = null;
+        right = null;
+    }
+}
+
+class Tree{
+    Node root;
+    
+    Tree(){
+        root = null;
+    }
+    
+    public void insert(int val){
+        Node newNode = new Node(val);
+        if(root == null){
+            root = newNode;
+            return;
+        }
+        Node temp = root;
+        while(true){
+            if(val < temp.data){
+                if(temp.left == null){
+                    temp.left = newNode;
+                    break;
+                }
+                else{
+                    temp = temp.left;
+                }
+            }
+            else{
+                if(temp.right == null){
+                    temp.right = newNode;
+                    break;
+                }
+                else{
+                    temp = temp.right;
+                }
+            }
+        }
+    }
+    
+    public void inOrder(Node root){
+        if(root != null){
+            inOrder(root.left);
+            System.out.print(root.data+" ");
+            inOrder(root.right);
+        }
+    }
+    
+    public void preOrder(Node root){
+        if(root != null){
+            System.out.print(root.data+" ");
+            preOrder(root.left);
+            preOrder(root.right);
+        }
+    }
+    
+    public void postOrder(Node root){
+        if(root != null){
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.print(root.data+" ");
+        }
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+	    Tree t = new Tree();
+	    t.insert(5);
+	    t.insert(4);
+	    t.insert(10);
+	    t.insert(2);
+	    t.insert(8);
+	    t.insert(6);
+	    System.out.println("InOrder traversal: ");
+	    t.inOrder(t.root);
+	    System.out.println();
+	    System.out.println("PreOrder traversal: ");
+	    t.preOrder(t.root);
+	    System.out.println();
+	    System.out.println("PostOrder traversal: ");
+	    t.postOrder(t.root);
+	    
+	}
+}
